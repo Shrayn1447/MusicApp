@@ -1,8 +1,8 @@
+'use client'
 import React from "react";
-import { Pause, Play,VolumeX, Volume2,Volume1,ArrowBigRight,ArrowBigLeft} from "lucide-react";
 import { useContext } from "react";
 import clsx from "clsx";
-import { DataContext } from "@/app/page";
+import { DataContext } from "@/components/DataProviders";
 export default function MusicList() {
   const {
     sound,
@@ -14,29 +14,30 @@ export default function MusicList() {
     setNumber,
   } = useContext(DataContext);
   return (
+  <div>
     <ul>
       {index.items?.map((el, index, arr) => {
         return (
           <li
             onClick={() => {
               setNumber(index);
-              if (sound.src !== el.track.preview_url) {
-                sound.src = el.track.preview_url;
-                sound.currentTime = 0;
+              if (sound.current.src !== el.track.preview_url) {
+                sound.current.src = el.track.preview_url;
+                sound.current.currentTime = 0;
                 setIsPlaing(true);
                 setTrack(arr[index]);
-                sound.play();
+                sound.current.play();
                 return;
               }
               if (!isPlaing) {
                 setIsPlaing(true);
                 setTrack(arr[index]);
-                sound.src = el.track.preview_url;
-                sound.play();
+                sound.current.src = el.track.preview_url;
+                sound.current.play();
               } else {
                 setIsPlaing(false);
                 setTrack(arr[index]);
-                sound.pause();
+                sound.current.pause();
               }
             }}
             className={clsx(
@@ -65,5 +66,6 @@ export default function MusicList() {
         );
       })}
     </ul>
+  </div>
   );
 }
