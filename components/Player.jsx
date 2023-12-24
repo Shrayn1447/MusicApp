@@ -3,10 +3,11 @@ import clsx from "clsx";
 import { Pause, Play,VolumeX, Volume2,Volume1,SkipForward,SkipBack} from "lucide-react";
 import { useContext, useEffect } from "react";
 import { DataContext } from "@/components/DataProviders";
+import moment from "moment";
 
 export default function Player() {
   const { sound,index,isPlaing,setIsPlaing,time,setTime,volume,setVolume,isVolume,setIsVolume, track, setTrack, setNumber, number } = useContext(DataContext)
-
+    console.log(sound.current?.duration)
     const timeopdite = () => {
       setTime(sound.current?.currentTime);
     }
@@ -55,13 +56,17 @@ export default function Player() {
     }
   }
   return (
-    <div className="flex w-[1000px] mx-auto container sticky rounded-xl bottom-[10px] py-[20px] bg-black/60 backdrop-blur-lg justify-center mt-[200px] gap-[40px] ">
-      <div >
-        <img className={clsx("", {
-          'animate-none':!isPlaing
+    <div className="flex w-full mx-auto container sticky rounded-xl bottom-[0px] py-[20px] bg-black/60 backdrop-blur-lg justify-between">
+      <div className="flex justify-center items-center text-[14px] gap-[10px]" >
+        <img className={clsx("animate-none rounded-full", {
+          'animate-spin':isPlaing
         })} src={track?.track?.album?.images[2].url} alt="Logo" />
+        <div className="text-[15px]">
+        <h1>{track?.track?.name}</h1>
+        <span className="text-[12px]">{track?.track?.album?.artists[0].name}</span>
+        </div>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col w-[60%] items-center">
        <div className="flex items-center gap-4">
         <button onClick={() => {
           if(number < 0) {
@@ -91,25 +96,23 @@ export default function Player() {
             })
           } } className="hover:bg-white/10 rounded-full p-[10px]">{<SkipForward/>}</button>
        </div>
-        <div className="flex items-center">
+        <div className="flex items-center justify-center  w-[100%]">
           <span className="w-[35px]">
-            {(Math.round(sound.current?.currentTime) / 100).toFixed(0)}:
-            {`${Math.round(sound.current?.currentTime).toFixed(0) <= 9 ? `0${Math.round(sound.current?.currentTime).toFixed(0)}`:Math.round(sound.current?.currentTime).toFixed(0)}`}
+            {moment.utc(sound.current?.currentTime*1000).format('m:ss')}
           </span>
           <input
             id="range"
             type="range"
             onInput={(e) => {
               sound.current.currentTime = e.target.value;
-              
-            }}
+              }}
             min={0}
-            max={isNaN(sound.current?.duration)? 0 : sound.current?.duration}
+            max={isNaN(sound.current?.duration) ? 0 : sound.current?.duration}
             step={0.001}
             value={time}
-            className="w-[300px] mx-[15px] my-auto h-[3px] cursor-pointer"
+            className=" mx-[15px] w-[60%] cursor-pointer"
           />
-          <span>{`0:${isNaN((Math.round(sound.current?.duration)))? '00':(Math.round(sound.current?.duration))}`}</span>
+          <span className="w-[34px]">{moment.utc(sound?.current?.duration*1000).format('m:ss')}</span>
         </div>
       </div>
       <div className="flex self-end gap-2">

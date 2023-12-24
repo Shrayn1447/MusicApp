@@ -1,7 +1,8 @@
-import { useEffect,useState } from "react"
 'use client'
-const [audio,setAudio] = useState()
+import { useEffect,useState } from "react"
+export const [audio, setAudio] = useState()
 useEffect(() => {
-    setAudio(new Audio())
-},[])
+  setAudio(new Audio(URL))
+}, [])
+ 
 
