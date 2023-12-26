@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { Pause, Play,VolumeX, Volume2,Volume1,SkipForward,SkipBack} from "lucide-react";
+import { Pause, Play,VolumeX,Music, Volume2,Volume1,SkipForward,SkipBack} from "lucide-react";
 import { useContext, useEffect } from "react";
 import { DataContext } from "@/components/DataProviders";
 import moment from "moment";
@@ -16,7 +16,7 @@ export default function Player() {
     }
     const nextsoungs = () => {
       setNumber((n) => {
-        n = n + 1
+         n++
         if(n >= index.items.length) {
           n = 0
           console.log('ДА иди ты на хуй')
@@ -56,13 +56,14 @@ export default function Player() {
     }
   }
   return (
-    <div className="flex w-full mx-auto container sticky rounded-xl bottom-[0px] py-[20px] bg-black/60 backdrop-blur-lg justify-between">
+    <div className="flex w-full rounded-xl px-[30px] col-span-full py-[20px] bg-black/60 backdrop-blur-lg justify-between ">
       <div className="flex justify-center items-center text-[14px] gap-[10px]" >
-        <img className={clsx("animate-none rounded-full", {
-          'animate-spin':isPlaing
-        })} src={track?.track?.album?.images[2].url} alt="Logo" />
-        <div className="text-[15px]">
-        <h1>{track?.track?.name}</h1>
+        {track ? <img className={clsx("animate-none rounded-full ", {
+          'animate-spin':isPlaing,
+          
+        })} src={track?.track?.album?.images[2].url} alt="Logo" /> :  <div className=' bg-white/10 rounded-full p-[30px]'> <Music/> </div>}
+        <div className="text-[15px] hidden md:block">
+        <h1 className="">{track?.track?.name}</h1>
         <span className="text-[12px]">{track?.track?.album?.artists[0].name}</span>
         </div>
       </div>
@@ -110,7 +111,7 @@ export default function Player() {
             max={isNaN(sound.current?.duration) ? 0 : sound.current?.duration}
             step={0.001}
             value={time}
-            className=" mx-[15px] w-[60%] cursor-pointer"
+            className=" mx-[15px] w-[60%] cursor-pointer h-[4px]"
           />
           <span className="w-[34px]">{moment.utc(sound?.current?.duration*1000).format('m:ss')}</span>
         </div>
