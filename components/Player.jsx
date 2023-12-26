@@ -61,7 +61,7 @@ export default function Player() {
         {track ? <img className={clsx("animate-none rounded-full ", {
           'animate-spin':isPlaing,
           
-        })} src={track?.track?.album?.images[2].url} alt="Logo" /> :  <div className=' bg-white/10 rounded-full p-[30px]'> <Music/> </div>}
+        })} src={track?.track?.album?.images[2].url} alt="Logo" /> :  <div className=' bg-white/10 rounded-full p-[20px]'> <Music/> </div>}
         <div className="text-[15px] hidden md:block">
         <h1 className="">{track?.track?.name}</h1>
         <span className="text-[12px]">{track?.track?.album?.artists[0].name}</span>
@@ -99,7 +99,7 @@ export default function Player() {
        </div>
         <div className="flex items-center justify-center  w-[100%]">
           <span className="w-[35px]">
-            {moment.utc(sound.current?.currentTime*1000).format('m:ss')}
+            {moment.utc(sound.current?.currentTime*1000 ? sound.current?.currentTime*1000 : 0).format('m:ss')}
           </span>
           <input
             id="range"
@@ -113,7 +113,7 @@ export default function Player() {
             value={time}
             className=" mx-[15px] w-[60%] cursor-pointer h-[4px]"
           />
-          <span className="w-[34px]">{moment.utc(sound?.current?.duration*1000).format('m:ss')}</span>
+          <span className="w-[34px]">{moment.utc(sound?.current?.duration*1000 ? sound?.current?.duration*1000: 0).format('m:ss')}</span>
         </div>
       </div>
       <div className="flex self-end gap-2">
