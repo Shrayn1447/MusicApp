@@ -1,10 +1,10 @@
 "use client";
 import { createContext, useState,useRef,useEffect } from "react";
 import { dataJson } from "@/lib/music/index";
-
+import { useAudio } from "@/hooks/useAudio";
 export const DataContext = createContext(null);
 export default function DataProviders({ children }) {
-  const sound  = useRef()
+  const {sound} = useAudio()
   const index = JSON.parse(dataJson);
   const [isPlaing, setIsPlaing] = useState(false);
   const [time, setTime] = useState(0);
@@ -12,9 +12,6 @@ export default function DataProviders({ children }) {
   const [isVolume, setIsVolume] = useState(true);
   const [track, setTrack] = useState();
   const [number, setNumber] = useState(0);
-  useEffect(() => {
-    sound.current = new Audio()
-  }, [])
   return (
     <DataContext.Provider
       value={{

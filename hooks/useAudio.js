@@ -1,8 +1,11 @@
 'use client'
 import { useEffect,useState } from "react"
-export const [audio, setAudio] = useState()
-useEffect(() => {
-  setAudio(new Audio(URL))
-}, [])
+export function useAudio() {
+  const [sound, setAudio] = useState(null)
+  useEffect(() => {
+    setAudio(new Audio())
+  }, [])
+  return {sound}
+}
  
 

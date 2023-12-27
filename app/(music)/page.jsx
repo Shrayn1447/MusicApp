@@ -22,23 +22,23 @@ export default function MusicList() {
           <li
             onClick={() => {
               setNumber(index);
-              if (sound.current.src !== el.track.preview_url) {
-                sound.current.src = el.track.preview_url;
-                sound.current.currentTime = 0;
+              if (sound.src !== el.track.preview_url) {
+                sound.src = el.track.preview_url;
+                sound.currentTime = 0;
                 setIsPlaing(true);
                 setTrack(arr[index]);
-                sound.current.play();
+                sound.play();
                 return;
               }
               if (!isPlaing) {
                 setIsPlaing(true);
                 setTrack(arr[index]);
-                sound.current.src = el.track.preview_url;
-                sound.current.play();
+                sound.src = el.track.preview_url;
+                sound.play();
               } else {
                 setIsPlaing(false);
                 setTrack(arr[index]);
-                sound.current.pause();
+                sound.pause();
               }
             }}
             className={clsx(
