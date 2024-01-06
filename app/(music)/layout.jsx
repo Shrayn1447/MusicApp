@@ -1,13 +1,28 @@
-import Player from "@/components/Player";
+"use client";
+import Player from "@/components/Player/Player";
 import Providers from "@/components/Providers";
 import Sitebar from "@/components/Sitebar";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
 export default function layout({ children }) {
   return (
     <Providers>
-      <div className="min-h-screen h-[100dvh] md:h-screen grid grid-rows-1 gap-[8px_8px] grid-cols-[8fr] md:grid-cols-[1.2fr_8fr] ">
-          <Sitebar/>
-          <div className="  bg-[#121212] p-[20px] overflow-y-auto rounded-xl m-[8px_0px_0px_0px] ">{children}</div>
-          <Player />
+      <div
+        className="max-h-screen flex flex-col h-[100dvh] md:h-screen gap-2"
+      >
+        <ResizablePanelGroup 
+          direction="horizontal"
+          className="flex gap-1 ">
+          <Sitebar />
+          <ResizableHandle className={'bg-black'} />
+          <ResizablePanel defaultSize={150} className="bg-[#121212]  p-[20px] rounded-xl m-[8px_0px_0px_0px]">
+            {children}
+          </ResizablePanel>
+        </ResizablePanelGroup>
+        <Player />
       </div>
     </Providers>
   );

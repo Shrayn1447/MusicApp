@@ -15,7 +15,7 @@ export default function MusicList() {
     setNumber,
   } = useContext(DataContext);
   return (
-  <div className=" bg-[#121212] py-[20px]" >
+  <div className="py-[20px] h-[85vh] overflow-y-auto" >
     <ul>
       {index.items?.map((el, index, arr) => {
         return (
@@ -31,18 +31,18 @@ export default function MusicList() {
                 return;
               }
               if (!isPlaing) {
-                setIsPlaing(true);
-                setTrack(arr[index]);
-                sound.src = el.track.preview_url;
-                sound.play();
+                setIsPlaing(true)
+                setTrack(arr[index])
+                sound.src = el.track.preview_url
+                sound.play()
               } else {
-                setIsPlaing(false);
-                setTrack(arr[index]);
-                sound.pause();
+                setIsPlaing(false)
+                setTrack(arr[index])
+                sound.pause()
               }
             }}
             className={clsx(
-              " min-w-[60%] justify-between rounded-lg hover:bg-[#2a2a2a] cursor-pointer flex items-center mx-auto container py-[5px] ",
+              "min-w-[60%] justify-between rounded-lg hover:bg-[#2a2a2a] cursor-pointer flex items-center mx-auto container py-[5px] ",
               {
                 "bg-[#2a2a2a]": track?.track?.id === el.track.id,
               

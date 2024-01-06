@@ -1,10 +1,13 @@
-'use client'
-import React from 'react'
-import DataProviders from './DataProviders'
-export default function Providers({children}) {
+"use client";
+import React from "react";
+import DataProviders from "./DataProviders";
+import { SessionProvider } from "next-auth/react";
+export default function Providers({ children }) {
   return (
     <DataProviders>
-            {children}
+      <SessionProvider>
+        {children}
+      </SessionProvider>
     </DataProviders>
-  )
+  );
 }
