@@ -1,18 +1,16 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import SoundVolume from "./SoundVolume";
+import { useAudio } from "../AudioProvider";
 import {data} from '../../lib/music/data'
 import Controls from "./Controls";
 import TrackCart from "./TrackCart";
-import { DataContext } from "../../components/DataProviders";
 import { useSelector, useDispatch } from 'react-redux'
 import { songisover, selectTrack} from '../../store/features/counter/counterSlice'
 export default function Player() {
+  const {sound} = useAudio()
   const dispatch = useDispatch()
   const track = useSelector(selectTrack)
-  const {
-    sound,
-  } = useContext(DataContext);
   useEffect(() => {
     function nextsoungs() {
       dispatch(songisover({playListLenght:data.items.length,sound:sound,playList:data}))

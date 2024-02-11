@@ -1,19 +1,16 @@
 'use client'
 import React from "react";
-import { useContext } from "react";
 import clsx from "clsx";
-import { DataContext } from "../../../components/DataProviders";
+import { useAudio } from "../../../components/AudioProvider";
 import {data} from '../../../lib/music/data'
 import moment from "moment";
 import { useSelector, useDispatch } from 'react-redux'
 import { setTrackPage, selectTrack} from '../../../store/features/counter/counterSlice'
 
 export default function Page({params}) {
+  const {sound} = useAudio()
   const dispatch = useDispatch()
   const {track} = useSelector(selectTrack)
-  const {
-    sound
-  } = useContext(DataContext);
 
   return (
   <div className="py-[20px] mb-[-10000px] h-[85vh]" >

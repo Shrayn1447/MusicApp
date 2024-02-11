@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import DataProviders from "./DataProviders";
+import AudioProviders from "./AudioProvider";
 import { store } from '../store/store'
 import { Provider } from 'react-redux'
 import { useRef } from "react";
@@ -11,9 +11,9 @@ export default function Providers({ children }) {
   }
   return (
     <Provider store={storeRef.current}>
-      <DataProviders>
+      <AudioProviders>
         {children}
-      </DataProviders>
+      </AudioProviders>
     </Provider>
   );
 }
