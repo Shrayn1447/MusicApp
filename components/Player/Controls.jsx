@@ -37,9 +37,7 @@ export default function Controls({index,sound}) {
         <button onClick={BackSong} className="hover:bg-white/10 rounded-full p-[10px]">{<SkipBack/>}</button>
         <button className="transition-all" onClick={PlaySound}>{track.track_isPlaing ? <Pause color="white" size={40} className="bg-white/10 rounded-full duration-200 hover:scale-110 p-[10px]" /> : <Play color="white" size={40} className="bg-white/10 pr-[6px]  duration-200  hover:scale-110 rounded-full p-[10px]" />}</button>
         <button onClick={NextSong} className="hover:bg-white/10 rounded-full p-[10px]">{<SkipForward/>}</button>
-        <button className={clsx('text-white',{
-          'text-green-500':track.repeat
-        })} onClick={() => {
+        <button className={track.repeat ? "text-white" : "text-green-500"} onClick={() => {
           dispath(setRepeat())
         }}><Repeat /></button>
        </div>

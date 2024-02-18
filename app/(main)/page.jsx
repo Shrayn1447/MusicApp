@@ -1,32 +1,55 @@
+'use client'
+import React from "react";
+import clsx from "clsx";
+import { useAudio } from "../../components/AudioProvider";
+import {data} from '../../lib/music/data'
+import moment from "moment";
+import { useSelector, useDispatch } from 'react-redux'
+import { setTrackPage, selectTrack} from '../../store/features/counter/counterSlice'
 
-import React from 'react'
-import Link from 'next/link'
-export default async function page() {
+export default function Page() {
+  const {sound} = useAudio()
+  const dispatch = useDispatch()
+  const {track} = useSelector(selectTrack)
   return (
-    <div className='p-6'>
-        <h1 className='mb-[20px] font-bold text-[30px]'>
-            Ваши любие хиты
-        </h1>
-        <div className='grid grid-cols-3 gap-3'>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={`/37i9dQZF1EIWBAeBtHuUT1`}>
-                
-            </Link>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={'/'}>
-                 
-            </Link>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={'/'}>
-                   
-            </Link>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={'/'}>
-                  
-            </Link>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={'/'}>
-                   
-            </Link>
-            <Link className='flex cursor-pointer transition-all items-center gap-4 bg-black/20 hover:bg-[rgb(255,255,255)]/30 overflow-hidden rounded-md max-w-[500px]' href={'/'}>
-                
-            </Link>
-        </div>
-    </div>
-  )
+  <div className="py-[20px]  h-[85vh]" >
+    <ul className="pb-[120px]">
+      {data.items?.map((el, index) => {
+        return (
+          <li
+            onClick={() => {
+              dispatch(setTrackPage({
+                sound : sound,
+                index,
+                el,
+              }))}}
+            className={clsx(
+              "min-w-[60%] justify-between rounded-lg hover:bg-[#2a2a2a] cursor-pointer flex items-center mx-auto container py-[5px] ",
+              {
+                "bg-[#2a2a2a]": track?.track?.id === el.track.id,
+              
+              }
+            )}
+            key={el.track.preview_url}
+          >
+              <div className="flex items-center gap-[10px]">
+                <div className="w-[20px]">
+                  {index + 1}
+                </div>
+                <div className="flex items-center gap-[10px]">
+                <img src={el.track.album.images[2].url} alt="TrackImg" />
+                </div>
+                <div>
+                  <p>{el?.track.name}</p>
+                </div>
+              </div>
+              <div>
+                {`${moment.utc(el.track.duration_ms).format('mm:ss')}`}
+              </div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+  );
 }
