@@ -18,21 +18,21 @@ export const counterSlice = createSlice({
       const {sound,index,el} = action.payload
       state.track_id = index
      if (sound.src !== el.track.preview_url) {
-        state.track_isPlaing = true
-        state.track = el
         sound.src = el.track.preview_url;
         sound.currentTime = 0;
         sound.play();
+        state.track_isPlaing = true
+        state.track = el
        }
     if (state.isPlaing) {
-        sound.pause()
         state.track_isPlaing = false,
         state.setTrack = el
+        sound.pause()
       } else {
-        sound.play()
         state.track=el
         sound.src = el.track.preview_url
         state.track_isPlaing=true
+        sound.play()
      }
     },
     songisover: (state,action) => {

@@ -13,7 +13,7 @@ export default function TrackList({data}) {
       dispatch(setPlayList({data:data.items}))
     },[])
     return (
-    <div  className="py-[20px] h-[85vh]" >
+    <div   className="py-[20px] h-[85vh]" >
       <ul className="pb-[120px]">
         {data.items?.map((el,index) => {
           return (
