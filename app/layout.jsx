@@ -1,4 +1,4 @@
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from "../components/Providers";
@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-black text-white`}>
       <Providers>
            {children}
+           <SpeedInsights/>
       </Providers>
         </body>
     </html>
