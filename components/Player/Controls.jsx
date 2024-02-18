@@ -5,7 +5,7 @@ import { Pause, Play,SkipForward,SkipBack,Repeat} from "lucide-react";
 import { useDispatch, useSelector } from 'react-redux';
 import {setTrackBack,playsong, selectTrack,setTrackNext,setRepeat} from '../../store/features/counter/counterSlice'
 import TimePlayer from './TimePlayer'
-export default function Controls({index,sound}) {
+export default function Controls({sound}) {
   const track = useSelector(selectTrack)
   const dispath = useDispatch()
   function BackSong() {
@@ -13,7 +13,6 @@ export default function Controls({index,sound}) {
         return
       }
       dispath(setTrackBack({
-          data:index,
           sound,
         }))
   } 
@@ -25,7 +24,6 @@ export default function Controls({index,sound}) {
   }
   function NextSong() {
     dispath(setTrackNext({
-     data:index,
      sound:sound
     }))
   } 
@@ -37,7 +35,7 @@ export default function Controls({index,sound}) {
         <button onClick={BackSong} className="hover:bg-white/10 rounded-full p-[10px]">{<SkipBack/>}</button>
         <button className="transition-all" onClick={PlaySound}>{track.track_isPlaing ? <Pause color="white" size={40} className="bg-white/10 rounded-full duration-200 hover:scale-110 p-[10px]" /> : <Play color="white" size={40} className="bg-white/10 pr-[6px]  duration-200  hover:scale-110 rounded-full p-[10px]" />}</button>
         <button onClick={NextSong} className="hover:bg-white/10 rounded-full p-[10px]">{<SkipForward/>}</button>
-        <button className={track.repeat ? "text-white" : "text-green-500"} onClick={() => {
+        <button className={track.repeat ? "text-green-500" : "text-white"} onClick={() => {
           dispath(setRepeat())
         }}><Repeat /></button>
        </div>

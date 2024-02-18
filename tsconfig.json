@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "lib/getPlayList.js"  ],
   "exclude": [
     "node_modules"
   ]

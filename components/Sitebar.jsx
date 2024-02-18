@@ -13,7 +13,7 @@ import {
 export default function Sitebar() {
   return (
     <>
-      <ResizablePanel defaultSize={20} className="hidden max-w-md  min-w-[200px] md:flex  text-[#b3b3b3] flex-col gap-2  rounded-xl m-[8px_0px_0px_8px]">
+      <ResizablePanel defaultSize={0} className="hidden max-w-md  min-w-[200px] md:flex  text-[#b3b3b3] flex-col gap-2  rounded-xl m-[8px_0px_0px_8px]">
         <section className=" rounded-xl bg-[#121212] flex flex-col justify-center gap-6 p-[12px_8px]">
             <Link href={'/'} className="cursor-pointer p-[4px_12px] flex  items-center gap-3 hover:text-white ">
               <Home className="w-6 h-6" /> 
