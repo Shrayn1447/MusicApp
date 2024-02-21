@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import Link from "next/link";
-import { Home, Search, Menu } from "lucide-react";
+import { Home, Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -18,10 +18,6 @@ export default function Sitebar() {
             <Link href={'/'} className="cursor-pointer p-[4px_12px] flex  items-center gap-3 hover:text-white ">
               <Home className="w-6 h-6" /> 
               <span>Главная</span>
-            </Link>
-            <Link href={'/search'} className="cursor-pointer p-[4px_12px] flex  items-center gap-3 hover:text-white">
-              <Search className="w-6 h-6" />
-              <span>Поиск</span>
             </Link>
         </section>
         <section className=" bg-[#121212] grow rounded-xl">
