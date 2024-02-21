@@ -11,10 +11,10 @@ export default function TimePlayer({track,sound}) {
         return () => {
         sound?.removeEventListener("timeupdate",timeopdite);
         }
-      },[track])
+      },[])
   return (
     <>
-    <span className="w-[35px]">
+    <span className="w-[35px] text-[14px] text-white/60">
     {moment.utc(sound?.currentTime*1000 ? sound?.currentTime*1000 : 0).format('m:ss')}
   </span>
     <input
@@ -29,7 +29,7 @@ export default function TimePlayer({track,sound}) {
     value={time}
     className=" mx-[15px] w-[50%] cursor-pointer h-[3px]"
   />
-  <span className="w-[34px]">{moment.utc(sound?.duration*1000 ? sound?.duration*1000: 0).format('m:ss')}</span>
+  <span className="w-[34px] text-[14px] text-white/60">{moment.utc(sound?.duration*1000 ? sound?.duration*1000: 0).format('m:ss')}</span>
   </>
   )
 }

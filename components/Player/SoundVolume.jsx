@@ -1,6 +1,9 @@
+'use client'
 import React, {useState} from "react";
 import {VolumeX, Volume2,Volume1} from "lucide-react";
-export default function SoundVolume({sound}) {
+import { useAudio } from "../AudioProvider";
+export default function SoundVolume() {
+  const {sound} = useAudio()
   const [isVolume, setIsVolume] = useState(true);
   const [volume,setVolume] = useState(0)
   function Volume() {

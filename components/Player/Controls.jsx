@@ -1,12 +1,14 @@
 'use client'
 import React from 'react'
-import clsx from 'clsx';
 import { Pause, Play,SkipForward,SkipBack,Repeat} from "lucide-react";
-import { useDispatch, useSelector } from 'react-redux';
-import {setTrackBack,playsong, selectTrack,setTrackNext,setRepeat} from '../../store/features/counter/counterSlice'
+import { useDispatch } from 'react-redux';
+import {setTrackBack,playsong,setTrackNext,setRepeat} from '../../store/features/counter/counterSlice'
 import TimePlayer from './TimePlayer'
-export default function Controls({sound}) {
-  const track = useSelector(selectTrack)
+import { useAudio } from "../AudioProvider";
+import { useTrack } from "../../hooks/useTrack";
+export default function Controls() {
+  const {sound} = useAudio()
+  const {track} = useTrack()
   const dispath = useDispatch()
   function BackSong() {
       if(track.track_id < 0) {
@@ -27,8 +29,6 @@ export default function Controls({sound}) {
      sound:sound
     }))
   } 
-    
-
   return (
     <div className="flex flex-col justify-center w-[60%] items-center">
        <div className="flex items-center gap-4">
