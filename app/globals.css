@@ -96,12 +96,7 @@
  /**
    Наследуем свойства шрифт для полей ввода
   */
- input,
- textarea,
- select,
- button {
-   font: inherit;
- }
+
  
  html {
    /**

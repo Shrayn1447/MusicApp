@@ -1,12 +1,12 @@
 'use client'
 import React,{useEffect,useState} from 'react'
 import moment from "moment";
-export default function TimePlayer({track,sound}) {
+export default function TimePlayer({sound}) {
     const [time,setTime] = useState(0)
+    const timeopdite = () => {
+      setTime(sound.currentTime);
+    }
     useEffect(() => {
-        const timeopdite = () => {
-          setTime(sound.currentTime);
-        }
         sound?.addEventListener("timeupdate",timeopdite);
         return () => {
         sound?.removeEventListener("timeupdate",timeopdite);
@@ -18,9 +18,9 @@ export default function TimePlayer({track,sound}) {
     {moment.utc(sound?.currentTime*1000 ? sound?.currentTime*1000 : 0).format('m:ss')}
   </span>
     <input
-    id="range"
+
     type="range"
-    onInput={(e) => {
+    onChange={(e) => {
       sound.currentTime = e.target.value;
     }}
     min={0}

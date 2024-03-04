@@ -11,9 +11,6 @@ export default function Controls() {
   const {track} = useTrack()
   const dispath = useDispatch()
   function BackSong() {
-      if(track.track_id < 0) {
-        return
-      }
       dispath(setTrackBack({
           sound,
         }))
@@ -41,7 +38,7 @@ export default function Controls() {
        </div>
         <div className="flex items-center justify-center  w-[100%]">
          
-          <TimePlayer sound={sound} track={track} />
+          <TimePlayer sound={sound} />
           
         </div>
       </div>

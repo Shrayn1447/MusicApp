@@ -16,4 +16,5 @@ export function useEndSong() {
         sound?.removeEventListener("ended", nextsoungs);
         };
       }, []);
+      return sound
 }

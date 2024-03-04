@@ -34,7 +34,7 @@ export default function SoundVolume() {
         min="0"
         max="100"
         volume={volume}
-        onInput={(e) => {
+        onChange={(e) => {
           sound.volume = e.target.value / 100;
           setVolume(e.target.value / 100)
           setIsVolume(true);
