@@ -7,7 +7,7 @@ export default function PlayList({item}) {
   return (
     <Link
       href={`/playlist/${id}`}
-      className="max-w-[200px] transition-all cursor-pointer hover:-translate-y-1 hover:tracking-wider hover:text-green-500"
+      className="max-w-[200px] transition-all cursor-pointer  hover:scale-105 hover:tracking-wider hover:text-green-500"
       key={item.name}
     >
       <div>

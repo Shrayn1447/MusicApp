@@ -13,7 +13,6 @@ export default function TrackList({data}) {
     const {track} = useTrack()
     const router = useRouter()
     const dispatch = useDispatch()
-    console.log(track)
     return (
     <div   className="py-[20px] h-[85vh]" >
       <ul className="pb-[120px]">

@@ -8,6 +8,7 @@ export const counterSlice = createSlice({
     track_isPlaing: false,
     track: undefined,
     repeat: false,
+    volume:0,
   },
   reducers: {
     setPlayList: (state, action) => {
@@ -17,6 +18,7 @@ export const counterSlice = createSlice({
     setTrackPage: (state, action) => {
       const { sound, index, el } = action.payload
       state.track_id = index
+      sound.volume = state.volume;
       if (sound.src !== el.track.preview_url) {
         sound.src = el.track.preview_url
         sound.currentTime = 0;
@@ -85,11 +87,18 @@ export const counterSlice = createSlice({
     },
     setRepeat: (state) => {
       state.repeat = !state.repeat
+    },
+    setVolume: (state,action) => {
+      const {volume} = action.payload
+      state.volume = volume;
+      if(state.volume < .02) {
+        state.volume = 0
+      }
     }
   },
 })
 
 
-export const { songisover, setTrackPage, setPlayList, setTrackBack, setRepeat, playsong, setTrackNext } = counterSlice.actions
+export const { songisover,setVolume, setTrackPage, setPlayList, setTrackBack, setRepeat, playsong, setTrackNext } = counterSlice.actions
 export const selectTrack = (state) => state.track
 export default counterSlice.reducer

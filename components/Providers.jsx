@@ -1,19 +1,17 @@
 "use client";
 import React from "react";
 import AudioProviders from "./AudioProvider";
-import { store } from '../store/store'
-import { Provider } from 'react-redux'
-import { useRef } from "react";
+import store  from "../store/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import {persister} from '../store/store'
 export default function Providers({ children }) {
-  const storeRef = useRef()
-  if (!storeRef.current) {
-    storeRef.current = store()
-  }
+ 
   return (
-    <Provider store={storeRef.current}>
-      <AudioProviders>
-        {children}
-      </AudioProviders>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persister}>
+        <AudioProviders>{children}</AudioProviders>
+      </PersistGate>
     </Provider>
   );
 }
